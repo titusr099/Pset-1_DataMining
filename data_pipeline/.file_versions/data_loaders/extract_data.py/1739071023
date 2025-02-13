@@ -1,0 +1,25 @@
+if 'data_loader' not in globals():
+    from mage_ai.data_preparation.decorators import data_loader
+from mage_ai.io.mysql import MySQL
+import os
+
+@data_loader
+def load_data(*args, **kwargs):
+    """
+    Extrae los datos desde MySQL y los devuelve como un DataFrame.
+    """
+
+    query = "SELECT * FROM orders LIMIT 1000"  # Cambia esto según tu tabla
+
+    db = MySQL(
+        database=os.getenv("MYSQL_DATABASE"),
+        host=os.getenv("MYSQL_HOST"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        port=int(os.getenv("MYSQL_PORT"))
+    )
+
+    with db:
+        df = db.load(query)
+
+    return df

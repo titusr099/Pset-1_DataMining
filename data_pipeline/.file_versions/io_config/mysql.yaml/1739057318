@@ -1,0 +1,7 @@
+  mysql:
+    type: mysql
+    host: "localhost"
+    user: "root"
+    password: "tu_contraseña"
+    database: "deber01_db"
+    port: 3306

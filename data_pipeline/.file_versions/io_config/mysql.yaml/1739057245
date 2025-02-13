@@ -1,0 +1,7 @@
+  mysql:
+    type: mysql
+    host: "localhost"   # Cambia esto si usas un servidor remoto
+    user: "tu_usuario"
+    password: "tu_contraseña"
+    database: "deber01_db"
+    port: 3306

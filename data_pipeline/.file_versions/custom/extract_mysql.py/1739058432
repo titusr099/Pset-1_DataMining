@@ -1,0 +1,17 @@
+import pandas as pd
+from mage_ai.io.mysql import MySQL
+
+with MySQL.with_config('mysql') as loader:
+    df_orders = loader.load('SELECT * FROM orders')
+    df_products = loader.load('SELECT * FROM products')
+    df_aisles = loader.load('SELECT * FROM aisles')
+    df_departments = loader.load('SELECT * FROM departments')
+    df_order_products = loader.load('SELECT * FROM order_products')
+
+outputs = {
+    'orders': df_orders,
+    'products': df_products,
+    'aisles': df_aisles,
+    'departments': df_departments,
+    'order_products': df_order_products
+}

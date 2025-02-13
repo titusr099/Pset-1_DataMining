@@ -1,0 +1,16 @@
+from mage_ai.io.mysql import MySQL
+from mage_ai.data_preparation.variable_manager import set_global_variable
+import os
+
+# Crear conexión con MySQL usando ENV
+db = MySQL.with_config(os.getenv("MYSQL_DATABASE"))
+
+# Query para extraer datos
+query = "SELECT * FROM orders LIMIT 1000"
+df = db.load(query)
+
+# Guardar el DataFrame en MageAI para que los siguientes bloques lo usen
+set_global_variable("mysql_to_snowflake", "extracted_data", df)
+
+# Mostrar los primeros datos extraídos
+print(df.head())

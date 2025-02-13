@@ -1,0 +1,7 @@
+project_uuid: 77d94e0a53ec4a18bf0d5240c75598f8
+features:
+  add_new_block_v2: true
+  data_integration_in_batch_pipeline: true
+  interactions: true
+help_improve_mage:
+pipelines:

@@ -1,0 +1,11 @@
+# Ocultar credenciales
+.env
+
+# Archivos de caché
+__pycache__/
+*.pyc
+*.pyo
+
+# Configuración de entorno virtual
+venv/
+*.log

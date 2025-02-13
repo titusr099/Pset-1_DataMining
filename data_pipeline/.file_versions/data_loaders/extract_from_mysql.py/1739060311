@@ -1,0 +1,18 @@
+from mage_ai.io.mysql import MySQL
+import os
+
+# Configuración de la conexión a MySQL usando variables de entorno
+db = MySQL(
+    database=os.getenv("MYSQL_DATABASE"),
+    host=os.getenv("MYSQL_HOST"),
+    user=os.getenv("MYSQL_USER"),
+    password=os.getenv("MYSQL_PASSWORD"),
+    port=int(os.getenv("MYSQL_PORT")),
+)
+
+# Consulta para extraer datos
+query = "SELECT * FROM orders LIMIT 1000"  # Ajusta según necesites
+df = db.load(query)
+
+# Ver los primeros registros extraídos
+print(df.head())

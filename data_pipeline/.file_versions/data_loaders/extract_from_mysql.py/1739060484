@@ -1,0 +1,25 @@
+from mage_ai.io.mysql import MySQL
+from mage_ai.data_preparation.decorators import custom
+import os
+
+@custom
+def extract_data():
+    # Crear conexión con MySQL usando variables de entorno
+    db = MySQL(
+        database=os.getenv("MYSQL_DATABASE"),
+        host=os.getenv("MYSQL_HOST"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        port=int(os.getenv("MYSQL_PORT")),
+    )
+
+    # Query para extraer datos
+    query = "SELECT * FROM orders LIMIT 1000"
+
+    # Extraer datos
+    df = db.load(query)
+
+    # Mostrar los primeros datos extraídos
+    print(df.head())
+
+    return df  # Retorna el DataFrame para ser usado en los siguientes pasos

@@ -1,0 +1,38 @@
+if 'data_loader' not in globals():
+    from mage_ai.data_preparation.decorators import data_loader
+if 'test' not in globals():
+    from mage_ai.data_preparation.decorators import test
+
+from mage_ai.io.mysql import MySQL
+import os
+import pandas as pd
+
+@data_loader
+def extract_data(*args, **kwargs):
+    """
+    Extrae los datos de MySQL y los devuelve como un DataFrame.
+    """
+    query = "SELECT * FROM orders;"  # Modifica según la tabla que quieras extraer
+
+    mysql_db = MySQL(
+        database=os.getenv("MYSQL_DATABASE"),
+        host=os.getenv("MYSQL_HOST"),
+        user=os.getenv("MYSQL_USER"),
+        password=os.getenv("MYSQL_PASSWORD"),
+        port=int(os.getenv("MYSQL_PORT")),
+    )
+
+    df = mysql_db.load(query)  # Ejecuta la consulta en MySQL
+
+    print(f"✅ Datos extraídos de MySQL: {df.shape[0]} filas extraídas.")
+
+    return df  # Retorna el DataFrame para ser usado en la carga (Load)
+
+@test
+def test_output(output, *args) -> None:
+    """
+    Verifica que los datos han sido extraídos correctamente desde MySQL.
+    """
+    assert output is not None, "❌ No se extrajeron datos de MySQL."
+    assert isinstance(output, pd.DataFrame), "❌ El resultado no es un DataFrame."
+    assert not output.empty, "❌ El DataFrame está vacío."
