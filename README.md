@@ -7,14 +7,23 @@ Este proyecto realiza un análisis detallado de los patrones de compra en Instac
 DEBER01_DATAM/
 
 │── data/                     # Datos sin procesar y finales
+
 │── data_pipeline/            # Pipelines de transformación de datos
+
 │   │── custom/               # Transformación de datos y modelo estrella (GOLD Schema)
+
 │   │── data_loaders/         # Scripts para extracción y carga de datos
+
 │── docs/                     # Reportes y documentación
+
 │── notebooks/                # Jupyter Notebooks con análisis exploratorio y visualizaciones
+
 │── scripts/                  # Scripts para conexión y pruebas con Snowflake
+
 │── README.md                 # Documentación principal del proyecto
+
 │── requirements.txt          # Dependencias necesarias para ejecutar el proyecto
+
 
 
 Cómo Ejecutar el Proyecto:
@@ -25,19 +34,30 @@ Asegúrate de tener las siguientes variables de entorno configuradas en tu archi
 🔹 Configuración de Snowflake
 
 SNOWFLAKE_ACCOUNT=<TU_CUENTA>
+
 SNOWFLAKE_USER=<TU_USUARIO>
+
 SNOWFLAKE_PASSWORD=<TU_CONTRASEÑA>
+
 SNOWFLAKE_WAREHOUSE=<TU_WAREHOUSE>
+
 SNOWFLAKE_DATABASE=<TU_DB>
+
 SNOWFLAKE_SCHEMA=<ESQUEMA>
+
 
 🔹 Configuración de MySQL
 
 MYSQL_HOST=<TU_HOST>
+
 MYSQL_PORT=<TU_PUERTO>
+
 MYSQL_DATABASE=<TU_DB>
+
 MYSQL_USER=<TU_USUARIO>
+
 MYSQL_PASSWORD=<TU_CONTRASEÑA>
+
 
 
 
@@ -82,8 +102,12 @@ Esto permite estructurar los datos de forma optimizada para responder preguntas 
 Este proyecto responde preguntas clave sobre el comportamiento de compra en Instacart, incluyendo:
 
 ✔️ ¿Qué días y horas tienen más compras?
+
 ✔️ ¿Cuáles son los productos más comprados y reordenados?
+
 ✔️ ¿Cuántos productos se compran en promedio por orden?
+
 ✔️ ¿Cómo varía el comportamiento de compra según el día y la hora?
+
 
 Los resultados están documentados en analysis.ipynb, con gráficos y tablas generadas.
