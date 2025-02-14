@@ -98,10 +98,10 @@ def transform_custom(*args, **kwargs):
         df_fact_order_products.insert(0, 'fact_order_product_key', range(1, len(df_fact_order_products) + 1))
 
         # ---- CARGA DE TABLAS A SNOWFLAKE (SCHEMA GOLD) ----
-        sf.export(df_dim_time, "DimTime", if_exists="replace")
-        sf.export(df_dim_user, "DimUser", if_exists="replace")
-        sf.export(df_dim_product, "DimProduct", if_exists="replace")
-        sf.export(df_fact_order_products, "FactOrderProducts", if_exists="replace")
+        sf.export(df_dim_time, "GOLD.DimTime", if_exists="replace")
+        sf.export(df_dim_user, "GOLD.DimUser", if_exists="replace")
+        sf.export(df_dim_product, "GOLD.DimProduct", if_exists="replace")
+        sf.export(df_fact_order_products, "GOLD.FactOrderProducts", if_exists="replace")
 
         print("✅ Modelo estrella subido a GOLD en Snowflake")
 
