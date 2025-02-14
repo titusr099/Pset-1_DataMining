@@ -35,8 +35,7 @@ blocks:
 - all_upstream_blocks_executed: true
   color: yellow
   configuration: {}
-  downstream_blocks:
-  - start_model_dimentional
+  downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -49,22 +48,6 @@ blocks:
   upstream_blocks:
   - load_data
   uuid: raw_to_clean_snowflake
-- all_upstream_blocks_executed: false
-  color: null
-  configuration: {}
-  downstream_blocks: []
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: python
-  name: start_model_dimentional
-  retry_config: null
-  status: executed
-  timeout: null
-  type: custom
-  upstream_blocks:
-  - raw_to_clean_snowflake
-  uuid: start_model_dimentional
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

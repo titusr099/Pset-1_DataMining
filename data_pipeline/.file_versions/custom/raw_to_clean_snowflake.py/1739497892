@@ -1,0 +1,60 @@
+if 'custom' not in globals():
+    from mage_ai.data_preparation.decorators import custom
+if 'test' not in globals():
+    from mage_ai.data_preparation.decorators import test
+from mage_ai.io.snowflake import Snowflake
+import pandas as pd
+
+@custom
+def transform_custom(*args, **kwargs):
+    """
+    Extrae los datos del schema RAW en Snowflake, los limpia y los guarda en el schema CLEAN.
+    """
+    # Conexión a Snowflake
+    sf = Snowflake.with_config('snowflake_config')
+
+    # Extraer datos del schema RAW
+    queries = {
+        "orders": "SELECT * FROM RAW.orders",
+        "products": "SELECT * FROM RAW.products",
+        "order_products": "SELECT * FROM RAW.order_products",
+        "aisles": "SELECT * FROM RAW.aisles",
+        "departments": "SELECT * FROM RAW.departments"
+    }
+
+    df_orders = sf.load(queries["orders"])
+    df_products = sf.load(queries["products"])
+    df_order_products = sf.load(queries["order_products"])
+    df_aisles = sf.load(queries["aisles"])
+    df_departments = sf.load(queries["departments"])
+
+    # --- LIMPIEZA DE DATOS ---
+    
+    
+
+    # --- CARGA DE DATOS EN EL SCHEMA CLEAN ---
+    sf.export(df_orders, "CLEAN.orders", if_exists="replace")
+    sf.export(df_products, "CLEAN.products", if_exists="replace")
+    sf.export(df_order_products, "CLEAN.order_products", if_exists="replace")
+    sf.export(df_aisles, "CLEAN.aisles", if_exists="replace")
+    sf.export(df_departments, "CLEAN.departments", if_exists="replace")
+
+    print("Proceso completado: Datos limpios y cargados en CLEAN.")
+
+    return {
+        "df_orders": df_orders.shape,
+        "df_products": df_products.shape,
+        "df_order_products": df_order_products.shape,
+        "df_aisles": df_aisles.shape,
+        "df_departments": df_departments.shape
+    }
+
+@test
+def test_output(output, *args) -> None:
+    """
+    Prueba para verificar que la transformación y carga de datos se ejecutó correctamente.
+    """
+    assert output is not None, 'El output está vacío'
+    assert isinstance(output, dict), 'El output no es un diccionario'
+    assert all(isinstance(value, tuple) for value in output.values()), 'Los valores de output no tienen la estructura esperada'
+    print("Test superado: Datos procesados correctamente.")

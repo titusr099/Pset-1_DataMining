@@ -59,7 +59,7 @@ blocks:
   language: python
   name: start_model_dimentional
   retry_config: null
-  status: executed
+  status: failed
   timeout: null
   type: custom
   upstream_blocks:
