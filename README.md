@@ -5,6 +5,7 @@ Descripción del Proyecto:
 Este proyecto realiza un análisis detallado de los patrones de compra en Instacart utilizando Snowflake y MageAI. Se implementó un modelo estrella (Star Schema) para estructurar los datos, permitiendo insights accionables sobre el comportamiento de los clientes.
 
 DEBER01_DATAM/
+
 │── data/                     # Datos sin procesar y finales
 │── data_pipeline/            # Pipelines de transformación de datos
 │   │── custom/               # Transformación de datos y modelo estrella (GOLD Schema)
@@ -22,6 +23,7 @@ Cómo Ejecutar el Proyecto:
 
 Asegúrate de tener las siguientes variables de entorno configuradas en tu archivo .env o en tu sistema:
 🔹 Configuración de Snowflake
+
 SNOWFLAKE_ACCOUNT=<TU_CUENTA>
 SNOWFLAKE_USER=<TU_USUARIO>
 SNOWFLAKE_PASSWORD=<TU_CONTRASEÑA>
@@ -30,11 +32,13 @@ SNOWFLAKE_DATABASE=<TU_DB>
 SNOWFLAKE_SCHEMA=<ESQUEMA>
 
 🔹 Configuración de MySQL
+
 MYSQL_HOST=<TU_HOST>
 MYSQL_PORT=<TU_PUERTO>
 MYSQL_DATABASE=<TU_DB>
 MYSQL_USER=<TU_USUARIO>
 MYSQL_PASSWORD=<TU_CONTRASEÑA>
+
 
 
 2. Instalar dependencias
